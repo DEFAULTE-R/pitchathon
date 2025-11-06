@@ -187,12 +187,6 @@
             flex-wrap: wrap;
             padding: 0.5rem 0;
         }
-
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
         
         .nav-link {
             padding: 0.8rem 1.2rem;
@@ -208,34 +202,86 @@
             color: var(--primary);
             border-bottom: 3px solid var(--primary);
         }
-
-        /* Hamburger Menu Toggle */
-        .nav-toggle {
+        
+        /* Hamburger Menu */
+        .hamburger-menu {
             display: none;
-            background: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
             border: none;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             flex-direction: column;
-            gap: 5px;
-            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
         }
-        .hamburger-bar {
+        
+        .hamburger-menu span {
+            display: block;
             width: 25px;
             height: 3px;
             background-color: var(--text);
-            border-radius: 2px;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            z-index: 999;
+            padding: 80px 20px 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            left: 0;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
+        
+        .mobile-nav-link:hover, .mobile-nav-link.active {
+            color: var(--primary);
+            background-color: rgba(46, 134, 171, 0.1);
         }
-        .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 998;
             opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
         }
-        .nav-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
-
         
         /* Hero CTA */
         .hero-cta {
@@ -407,7 +453,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
         
         .sdg-name {
@@ -445,13 +490,11 @@
             content: "•";
             color: var(--accent);
             font-size: 1.5rem;
-            line-height: 1;
         }
         
         .problem-context, .problem-challenge, .problem-impact {
             margin-bottom: 0.8rem;
             font-size: 0.95rem;
-            margin-left: 1.2rem; /* Aligns with bullet text */
         }
         
         .problem-context {
@@ -515,6 +558,29 @@
             left: 0;
             color: var(--secondary);
             font-weight: bold;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-email {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-email:hover {
+            color: var(--accent);
         }
         
         /* Judging Table */
@@ -603,50 +669,13 @@
             .stat-number {
                 font-size: 1.5rem;
             }
-
-            /* Disable 3D animation on mobile for performance */
-            #animation-container {
+            
+            .nav-container {
                 display: none;
             }
-
-            /* Hamburger Menu Logic */
-            .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                flex-wrap: nowrap;
-            }
-
-            .nav-toggle {
-                display: flex;
-                flex-direction: column;
-                z-index: 101;
-            }
-
-            .nav-links {
-                display: none; /* Hide by default */
-                position: absolute;
-                top: 60px; /* Adjust based on nav height */
-                left: 0;
-                right: 0;
-                background-color: var(--card-bg);
-                flex-direction: column;
-                width: 100%;
-                box-shadow: var(--shadow);
-                padding-bottom: 1rem;
-            }
-            .nav-links.active {
-                display: flex; /* Show when active */
-            }
             
-            .nav-link {
-                width: 100%;
-                border-bottom: 1px solid rgba(0,0,0,0.1);
-                border-left: none;
-            }
-            .nav-link:hover, .nav-link.active {
-                border-bottom: 1px solid var(--primary);
-                border-left: 3px solid var(--primary); /* Add side indicator */
+            .hamburger-menu {
+                display: flex;
             }
             
             .cta-buttons {
@@ -705,15 +734,50 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .hamburger-menu {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 3D Animation Container -->
     <div id="animation-container"></div>
     
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
+    
+    <!-- Hamburger Menu -->
+    <button class="hamburger-menu" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#about" class="mobile-nav-link active">About</a>
+        <a href="#domains" class="mobile-nav-link">Problem Statements</a>
+        <a href="#rules" class="mobile-nav-link">Rules & Regulations</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <div class="contact-info" style="margin-top: 2rem; padding: 0 15px;">
+            <a href="mailto:haril.student@saveetha.ac.in" class="contact-email">
+                <i class="fas fa-envelope"></i> haril.student@saveetha.ac.in
+            </a>
+            <a href="mailto:dharshank.student@saveetha.ac.in" class="contact-email">
+                <i class="fas fa-envelope"></i> dharshank.student@saveetha.ac.in
+            </a>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
     
     <header>
         <div class="container header-content">
@@ -738,17 +802,10 @@
     
     <nav>
         <div class="container nav-container">
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-            </button>
-            <div class="nav-links" id="nav-links">
-                <a href="#about" class="nav-link active">About</a>
-                <a href="#domains" class="nav-link">Problem Statements</a>
-                <a href="#rules" class="nav-link">Rules & Regulations</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+            <a href="#about" class="nav-link active">About</a>
+            <a href="#domains" class="nav-link">Problem Statements</a>
+            <a href="#rules" class="nav-link">Rules & Regulations</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
     
@@ -781,6 +838,7 @@
                 <p class="domain-description">This domain focuses on ending poverty and hunger, ensuring healthy and educated lives, and achieving equity and equality for all. It addresses the fundamental human-centric goals necessary for a stable and prosperous society.</p>
                 
                 <div class="sdg-grid">
+                    <!-- SDG 1 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #e5243b;">
                             <div class="sdg-number">1</div>
@@ -802,6 +860,7 @@
                         </div>
                     </div>
                     
+                    <!-- SDG 2 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #DDA63A;">
                             <div class="sdg-number">2</div>
@@ -822,7 +881,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 3 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #4C9F38;">
                             <div class="sdg-number">3</div>
@@ -843,7 +903,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 4 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #C5192D;">
                             <div class="sdg-number">4</div>
@@ -864,7 +925,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 5 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #FF3A21;">
                             <div class="sdg-number">5</div>
@@ -885,7 +947,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 10 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #DD1367;">
                             <div class="sdg-number">10</div>
@@ -906,14 +969,16 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
-
+            
             <div class="domain-container">
                 <h3 class="domain-title"><i class="fas fa-globe-americas"></i> Domain 2: Planet — Cleantech and Environmental Systems Innovation</h3>
                 <p class="domain-description">This domain addresses the urgent need to protect our planet's natural resources. It focuses on the technological and systems-level innovations required to deliver clean water, sustainable energy, and resilient cities, while protecting our climate and the biodiversity on land and below water.</p>
                 
                 <div class="sdg-grid">
+                    <!-- SDG 6 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #26BDE2;">
                             <div class="sdg-number">6</div>
@@ -934,7 +999,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 7 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #FCC30B;">
                             <div class="sdg-number">7</div>
@@ -955,7 +1021,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 11 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #FD9D24;">
                             <div class="sdg-number">11</div>
@@ -976,7 +1043,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 12 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #BF8B2E;">
                             <div class="sdg-number">12</div>
@@ -997,7 +1065,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 13 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #3F7E44;">
                             <div class="sdg-number">13</div>
@@ -1018,7 +1087,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 14 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #0A97D9;">
                             <div class="sdg-number">14</div>
@@ -1039,7 +1109,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 15 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #56C02B;">
                             <div class="sdg-number">15</div>
@@ -1060,14 +1131,16 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
-
+            
             <div class="domain-container">
-                <h3 class="domain-title"><i class="fas fa-landmark"></i> Domain 3: Prosperity and Peace — Infrastructure and Institutional Technology</h3>
+                <h3 class="domain-title"><i class="fas fa-building"></i> Domain 3: Prosperity and Peace — Infrastructure and Institutional Technology</h3>
                 <p class="domain-description">This domain focuses on the underlying systems that enable societies to function and thrive. It addresses the need for decent work, innovative and resilient infrastructure, and the accountable, peaceful institutions that serve as the foundation for all other goals.</p>
                 
                 <div class="sdg-grid">
+                    <!-- SDG 8 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #A21942;">
                             <div class="sdg-number">8</div>
@@ -1088,7 +1161,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 9 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #FD6925;">
                             <div class="sdg-number">9</div>
@@ -1109,7 +1183,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 16 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #00689D;">
                             <div class="sdg-number">16</div>
@@ -1130,7 +1205,8 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <!-- SDG 17 -->
                     <div class="sdg-card">
                         <div class="sdg-header" style="background-color: #19486A;">
                             <div class="sdg-number">17</div>
@@ -1151,10 +1227,10 @@
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
             </div>
-
+            
             <div class="hero-cta">
                 <h3 class="cta-title">Found Your Challenge?</h3>
                 <p>Select one of these problem statements and start developing your innovative solution today!</p>
@@ -1234,7 +1310,7 @@
                                     <td>Pitch Quality and Q&A</td>
                                     <td>20%</td>
                                     <td>Clarity and persuasiveness of presentation; ability to answer judges' questions</td>
-                                1</tr>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -1247,12 +1323,20 @@
             <div class="hero-cta">
                 <h3 class="cta-title">Have Questions About Pitchathon 2025?</h3>
                 <p>Reach out to our team for any inquiries about the event, rules, or problem statements.</p>
-                <div class="cta-buttons">
-                    <a href="mailto:pitchathon2025@example.com" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Email Us
+                <div class="contact-info">
+                    <a href="mailto:haril.student@saveetha.ac.in" class="contact-email">
+                        <i class="fas fa-envelope"></i> haril.student@saveetha.ac.in
                     </a>
-                    <a href="#domains" class="btn btn-secondary">
+                    <a href="mailto:dharshank.student@saveetha.ac.in" class="contact-email">
+                        <i class="fas fa-envelope"></i> dharshank.student@saveetha.ac.in
+                    </a>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#domains" class="btn btn-primary">
                         <i class="fas fa-lightbulb"></i> View Challenges
+                    </a>
+                    <a href="#rules" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> Review Rules
                     </a>
                 </div>
                 <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">We're here to help you succeed in your Pitchathon journey!</p>
@@ -1289,21 +1373,39 @@
             }
         });
         
-        // Simple navigation highlighting and mobile menu
+        // Hamburger Menu Toggle
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const overlay = document.getElementById('overlay');
+        
+        hamburgerMenu.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        overlay.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close mobile nav when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Simple navigation highlighting
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
             const sections = document.querySelectorAll('section');
-            const navToggle = document.getElementById('nav-toggle');
-            const navLinksContainer = document.getElementById('nav-links');
-
-            // Mobile Hamburger Menu Toggle
-            navToggle.addEventListener('click', () => {
-                navLinksContainer.classList.toggle('active');
-                const isExpanded = navLinksContainer.classList.contains('active');
-                navToggle.setAttribute('aria-expanded', isExpanded);
-            });
             
-            // Function to change active nav link on scroll
             function changeActiveNavLink() {
                 let currentSection = '';
                 sections.forEach(section => {
@@ -1315,6 +1417,13 @@
                 });
                 
                 navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                mobileNavLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href').substring(1) === currentSection) {
                         link.classList.add('active');
@@ -1334,11 +1443,18 @@
                         top: targetSection.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    // Close mobile menu on link click
-                    if(navLinksContainer.classList.contains('active')) {
-                        navLinksContainer.classList.remove('active');
-                        navToggle.setAttribute('aria-expanded', false);
-                    }
+                });
+            });
+            
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 });
             });
             
@@ -1348,11 +1464,6 @@
         
         // 3D Animation with Three.js
         function init3DAnimation() {
-            // Check if user is on a mobile device (based on media query)
-            if (window.matchMedia("(max-width: 768px)").matches) {
-                return; // Don't initialize animation on mobile
-            }
-
             const container = document.getElementById('animation-container');
             
             // Create scene
