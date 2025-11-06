@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitchathon - SDG Innovation Challenge</title>
+    <title>Pitchathon 2025 - SDG Innovation Challenge</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* Base Styles */
         :root {
@@ -14,6 +15,24 @@
             --light: #F7F9FC;
             --dark: #2B2D42;
             --success: #4CAF50;
+            --text: #2B2D42;
+            --bg: #F7F9FC;
+            --card-bg: #FFFFFF;
+            --header-bg: linear-gradient(135deg, #2E86AB, #1B5E7A);
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode {
+            --primary: #4AA8D8;
+            --secondary: #C44D8C;
+            --accent: #FFA733;
+            --light: #1E1F2E;
+            --dark: #E2E2E2;
+            --text: #E2E2E2;
+            --bg: #1E1F2E;
+            --card-bg: #2B2D42;
+            --header-bg: linear-gradient(135deg, #1B5E7A, #0F3A4D);
+            --shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         
         * {
@@ -21,12 +40,14 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -36,13 +57,24 @@
             padding: 1rem;
         }
         
+        /* 3D Animation Container */
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary), #1B5E7A);
+            background: var(--header-bg);
             color: white;
             padding: 1.5rem 0;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
         }
@@ -93,6 +125,12 @@
             backdrop-filter: blur(5px);
             min-width: 120px;
             text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
         }
         
         .stat-number {
@@ -106,9 +144,37 @@
             opacity: 0.9;
         }
         
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+        
         /* Navigation */
         nav {
-            background-color: white;
+            background-color: var(--card-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -125,7 +191,7 @@
         .nav-link {
             padding: 0.8rem 1.2rem;
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text);
             font-weight: 600;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
@@ -139,13 +205,20 @@
         
         /* Hero CTA */
         .hero-cta {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 12px;
             padding: 2rem;
             margin: 2rem auto;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
             max-width: 800px;
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         .cta-title {
@@ -171,6 +244,11 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
         }
         
         .btn-primary {
@@ -180,20 +258,18 @@
         
         .btn-primary:hover {
             background-color: #1B5E7A;
-            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(43, 45, 66, 0.2);
         }
         
         .btn-secondary {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg);
+            color: var(--text);
             border: 2px solid var(--primary);
         }
         
         .btn-secondary:hover {
             background-color: var(--primary);
             color: white;
-            transform: translateY(-3px);
         }
         
         /* Content Sections */
@@ -233,7 +309,7 @@
         }
         
         .domain-title {
-            background: linear-gradient(135deg, var(--primary), #1B5E7A);
+            background: var(--header-bg);
             color: white;
             padding: 1.2rem 1.5rem;
             border-radius: 10px 10px 0 0;
@@ -248,11 +324,11 @@
         }
         
         .domain-description {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 1.5rem;
             border-radius: 0 0 10px 10px;
             margin-top: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
         }
         
         /* SDG Grid */
@@ -264,18 +340,19 @@
         }
         
         .sdg-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            transform: translateY(0) rotate(0);
         }
         
         .sdg-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .sdg-header {
@@ -311,7 +388,7 @@
         .problem-item {
             margin-bottom: 1.2rem;
             padding-bottom: 1.2rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         
         .problem-item:last-child {
@@ -341,18 +418,19 @@
         }
         
         .problem-context {
-            color: #555;
+            color: var(--text);
+            opacity: 0.8;
         }
         
         .problem-challenge {
-            background-color: #f0f7ff;
+            background-color: rgba(46, 134, 171, 0.1);
             padding: 0.8rem;
             border-left: 3px solid var(--primary);
             border-radius: 0 5px 5px 0;
         }
         
         .problem-impact {
-            background-color: #f0fff4;
+            background-color: rgba(76, 175, 80, 0.1);
             padding: 0.8rem;
             border-left: 3px solid var(--success);
             border-radius: 0 5px 5px 0;
@@ -360,10 +438,10 @@
         
         /* Rules Section */
         .rules-container {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
         }
         
         .rules-section {
@@ -378,7 +456,7 @@
             color: var(--primary);
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -417,7 +495,7 @@
         .judging-table th, .judging-table td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         
         .judging-table th {
@@ -426,7 +504,7 @@
         }
         
         .judging-table tr:nth-child(even) {
-            background-color: #f8f9fa;
+            background-color: rgba(0,0,0,0.05);
         }
         
         /* Footer */
@@ -496,7 +574,7 @@
             
             .nav-link {
                 width: 100%;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
                 border-left: none;
             }
             
@@ -549,19 +627,30 @@
             .cta-title {
                 font-size: 1.3rem;
             }
+            
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 3D Animation Container -->
+    <div id="animation-container"></div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
     <header>
         <div class="container header-content">
-            <h1>Pitchathon</h1>
+            <h1>Pitchathon 2025</h1>
             <p class="subtitle">A Technical Challenge Matrix for the 17 Sustainable Development Goals</p>
             <div class="stats">
-                <div class="stat-box">
-                    <span class="stat-number">60</span>
-                    <span class="stat-label">Registered Students</span>
-                </div>
                 <div class="stat-box">
                     <span class="stat-number">34</span>
                     <span class="stat-label">Problem Statements</span>
@@ -569,6 +658,10 @@
                 <div class="stat-box">
                     <span class="stat-number">17</span>
                     <span class="stat-label">SDGs</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">2025</span>
+                    <span class="stat-label">Edition</span>
                 </div>
             </div>
         </div>
@@ -579,26 +672,26 @@
             <a href="#about" class="nav-link active">About</a>
             <a href="#domains" class="nav-link">Problem Statements</a>
             <a href="#rules" class="nav-link">Rules & Regulations</a>
-            <a href="#register" class="nav-link">Register Now</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
     
     <main class="container">
         <section id="about">
-            <h2 class="section-title">About Pitchathon</h2>
+            <h2 class="section-title">About Pitchathon 2025</h2>
             <p class="intro-text">
                 The 2030 Agenda for Sustainable Development represents a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. This "Pitchathon" is a direct response to that call to action, challenging the next generation of innovators to design technical solutions for the world's most pressing problems.
             </p>
             
             <div class="hero-cta">
                 <h3 class="cta-title">Ready to Make an Impact?</h3>
-                <p>Join 60+ students already registered for this exciting challenge. Form your team and start working on your solution today!</p>
+                <p>Join fellow students in this exciting challenge. Form your team and start working on your solution today!</p>
                 <div class="cta-buttons">
-                    <a href="#register" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i> Register Your Team
-                    </a>
-                    <a href="#domains" class="btn btn-secondary">
+                    <a href="#domains" class="btn btn-primary">
                         <i class="fas fa-lightbulb"></i> View Challenges
+                    </a>
+                    <a href="#rules" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> Review Rules
                     </a>
                 </div>
             </div>
@@ -621,15 +714,15 @@
                         <div class="problem-list">
                             <div class="problem-item">
                                 <div class="problem-title">FinTech for Radical Financial Inclusion</div>
-                                <div class="problem-context">Extreme poverty traps hundreds of millions, often due to exclusion from formal financial systems.</div>
-                                <div class="problem-challenge">Design a decentralized or mobile-first FinTech platform with verifiable digital identity and financial services.</div>
-                                <div class="problem-impact">Democratize access to financial services and foster entrepreneurship.</div>
+                                <div class="problem-context">Extreme poverty, defined as living on less than $2.15 a day, is a condition trapping hundreds of millions. A key driver of this trap is exclusion from formal financial systems. These "unbanked" populations, often rural, female, or in the informal economy, lack access to the basic tools of economic mobility: secure credit, insurance, savings, and payments.</div>
+                                <div class="problem-challenge">Design a decentralized or mobile-first financial technology (FinTech) platform. This solution must provide a verifiable, low-cost digital identity and offer access to at least one key financial service (e.g., micro-credit, micro-insurance). The design must be resilient and usable for populations with intermittent connectivity and varying levels of literacy.</div>
+                                <div class="problem-impact">To democratize access to financial services, foster entrepreneurship, and help implement a "social protection floor" for the world's most vulnerable populations.</div>
                             </div>
                             <div class="problem-item">
                                 <div class="problem-title">AI-Driven Social Protection Systems</div>
-                                <div class="problem-context">Social protection systems struggle to identify and reach the most vulnerable during crises.</div>
-                                <div class="problem-challenge">Develop an AI-powered model using diverse data sources to create real-time vulnerability maps.</div>
-                                <div class="problem-impact">Transform social protection from reactive to predictive.</div>
+                                <div class="problem-context">Social protection systems (like cash transfers or food aid) are critical for preventing people from falling into extreme poverty. However, these systems are often reactive, slow, and inefficient, struggling to identify and reach the most vulnerable, especially during sudden-onset crises like climate disasters or economic shocks.</div>
+                                <div class="problem-challenge">Develop a data analytics and AI-powered "Dynamic Vulnerability" model. This system must ingest and integrate diverse, non-traditional data sources (e.g., satellite imagery, mobile network data, food-price feeds) to create a high-resolution, real-time map of poverty and vulnerability. The model should enable predictive, automated targeting of aid.</div>
+                                <div class="problem-impact">To transform social protection from a reactive to a predictive model, ensuring aid reaches the right people at the right time, minimizing human suffering and strengthening community resilience.</div>
                             </div>
                         </div>
                     </div>
@@ -643,28 +736,113 @@
                         <div class="problem-list">
                             <div class="problem-item">
                                 <div class="problem-title">The Digital Extension Agent</div>
-                                <div class="problem-context">Small-scale farmers lack access to critical agricultural information.</div>
-                                <div class="problem-challenge">Create a mobile-first, AI-powered advisory platform with voice interfaces for farmers.</div>
-                                <div class="problem-impact">Double agricultural productivity and incomes for small-scale producers.</div>
+                                <div class="problem-context">A significant portion of the world's food is produced by small-scale farmers, yet they are often the most food-insecure. This paradox exists because they lack access to critical information: hyper-local weather data, climate-smart agricultural techniques, pest control advice, and fair market pricing.</div>
+                                <div class="problem-challenge">Create a mobile-first, AI-powered advisory platform (a "Digital Extension Agent") for smallholder farmers. To overcome literacy barriers, the platform must prioritize voice and audio-based interfaces. It must deliver actionable, hyper-local advice on pest control, meteorological data, and market pricing to improve yields and income.</div>
+                                <div class="problem-impact">To contribute to the goal of doubling agricultural productivity and incomes of small-scale food producers by democratizing access to actionable, climate-smart knowledge.</div>
                             </div>
                             <div class="problem-item">
                                 <div class="problem-title">Blockchain for Food System Transparency</div>
-                                <div class="problem-context">One-third of food produced globally is lost or wasted due to opaque supply chains.</div>
-                                <div class="problem-challenge">Develop a traceability solution using IoT sensors and blockchain technology.</div>
-                                <div class="problem-impact">Drastically reduce food loss and waste through transparent supply chains.</div>
+                                <div class="problem-context">The global food system is plagued by inefficiency. An estimated one-third of all food produced globally is lost or wasted. This loss occurs at every stage of the supply chain, from post-harvest losses due to poor storage to retail and consumer waste, all of which is exacerbated by opaque and untraceable supply chains.</div>
+                                <div class="problem-challenge">Develop a traceability solution using a combination of IoT sensors and blockchain technology to track a food product from farm to consumer. The system must monitor and record key metrics (e.g., temperature, humidity, location) in real-time on an immutable ledger, identifying wastage hotspots and providing verifiable proof of origin.</div>
+                                <div class="problem-impact">To drastically reduce food loss and waste by creating a transparent, accountable, and highly efficient global food supply chain.</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Additional SDGs would follow the same pattern -->
-                    <!-- For brevity, I'm showing just a few examples -->
+                    <!-- SDG 3 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #4C9F38;">
+                            <div class="sdg-number">3</div>
+                            <div class="sdg-name">Good Health and Well-being</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">AI-Powered Diagnostics for Remote and Low-Resource Areas</div>
+                                <div class="problem-context">Millions of people in low-resource settings die from preventable or treatable diseases (including complications in childbirth, contributing to high maternal mortality) because they lack access to basic diagnostic services. There is a global shortage of specialists, like radiologists and ophthalmologists, to interpret medical images.</div>
+                                <div class="problem-challenge">Develop an AI/Machine Learning model that can perform high-accuracy disease diagnosis using a low-cost, low-power mobile device. The solution (e.g., analyzing chest X-rays for tuberculosis, or retinal scans for diabetic retinopathy) must be deployable offline and designed for use by a community health worker with minimal training.</div>
+                                <div class="problem-impact">To democratize medical diagnostics, bringing specialist-level knowledge to primary care clinics and remote villages, thereby saving lives and improving health outcomes.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Gamified Mental Wellness Platform for Youth</div>
+                                <div class="problem-context">SDG 3's mandate to "promote well-being for all" explicitly includes mental health. Yet, a global mental health crisis is growing, particularly among young people. Traditional therapy is often inaccessible, unaffordable, or highly stigmatized, preventing youth from seeking help.</div>
+                                <div class="problem-challenge">Create an engaging, "gamified" mobile application that promotes mental well-being and emotional resilience for youth. The platform's design must be grounded in evidence-based clinical practices (e.g., CBT, mindfulness) and provide users with positive coping tools and access to peer-support networks, all while ensuring robust data privacy and user safety.</div>
+                                <div class="problem-impact">To reduce the stigma surrounding mental health and provide a free, accessible, and engaging "first step" for young people to build mental resilience and connect with support systems.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 4 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #C5192D;">
+                            <div class="sdg-number">4</div>
+                            <div class="sdg-name">Quality Education</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Personalized AI Tutor for K-12</div>
+                                <div class="problem-context">The "one-size-fits-all" model of traditional education struggles to meet the diverse needs of all students, leading to significant learning gaps. This inequality is exacerbated in overcrowded, under-resourced classrooms. Personalized career guidance and adaptive learning are urgently needed.</div>
+                                <div class="problem-challenge">Develop an AI-powered personalized learning platform that functions as a 24/7 "AI Tutor." The system must be able to assess a student's knowledge level, adapt to their individual learning pace, identify knowledge gaps, and provide a customized curriculum of content (e.g., interactive exercises, videos, quizzes) to achieve subject mastery, especially in foundational skills.</div>
+                                <div class="problem-impact">To bridge learning gaps and provide high-quality, personalized education at scale, offering every student a pathway to mastery regardless of their school's resources.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Digital Upskilling Platform for Lifelong Learning</div>
+                                <div class="problem-context">SDG 4 promotes "lifelong learning opportunities for all". In an era of rapid technological change and automation, the traditional "one-time" degree model is obsolete. Workers and professionals must constantly re-skill to remain relevant in the labor market.</div>
+                                <div class="problem-challenge">Design an online platform focused on "micro-credentials" and project-based learning for high-demand technical and green-economy skills. The solution must use an AI-driven "skills-mapping" engine to analyze a user's current abilities, suggest a personalized "upskilling roadmap," and connect them with mentors and potential employers.</div>
+                                <div class="problem-impact">To create a flexible, accessible, and effective ecosystem for lifelong learning and career-switching, empowering the global workforce to adapt to the future of work.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 5 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #FF3A21;">
+                            <div class="sdg-number">5</div>
+                            <div class="sdg-name">Gender Equality</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Tech-Enabled Safe Spaces and Alert Systems</div>
+                                <div class="problem-context">A key target of SDG 5 is the elimination of all forms of violence against women and girls in public and private spheres. The fear or reality of violence acts as a profound barrier, limiting women's mobility, access to education, and participation in the economy.</div>
+                                <div class="problem-challenge">Develop a "digital safe space" solution. This could be a low-cost, discreet wearable device or a mobile application that integrates with trusted community networks (e.g., family, friends, local security). The solution must feature a rapid, one-touch alert system and must be designed to prioritize user privacy and function reliably in low-connectivity environments.</div>
+                                <div class="problem-impact">To reduce the incidence of violence against women and improve their safety and mobility, thereby increasing their access to educational and economic opportunities.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Platform for Women Entrepreneurs in the Digital Economy</div>
+                                <div class="problem-context">Digital technologies offer immense potential to "open possibilities for increased employment and business opportunities" for women. However, a persistent "digital divide" and structural inequalities mean women are often left behind, with technology "perpetuating and embedding existing patterns of gender inequality".</div>
+                                <div class="problem-challenge">Create an integrated platform (web and mobile) designed specifically to empower female entrepreneurs in developing economies. The platform must be a one-stop-shop that combines three key pillars: 1) access to financial services (e.g., FinTech micro-loans), 2) digital skills training, and 3) a secure e-commerce marketplace to sell products and services globally.</div>
+                                <div class="problem-impact">To help close the gender-based digital and economic divide by providing women with the tools, capital, and market access needed to build and scale their businesses.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 10 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #DD1367;">
+                            <div class="sdg-number">10</div>
+                            <div class="sdg-name">Reduced Inequalities</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Assistive Technology for Digital Inclusion</div>
+                                <div class="problem-context">Inequality is dramatically exacerbated by the digital divide, which disproportionately affects persons with disabilities (PWDs). A lack of accessible education tools and assistive technology (AT) creates critical barriers, effectively locking millions out of the modern economy, education, and civic life.</div>
+                                <div class="problem-challenge">Design an open-source, low-cost assistive technology solution. This could be an AI-powered screen reader for the visually impaired that functions in local dialects, a gesture- or voice-control system for those with motor impairments, or adaptive learning tools for neurodiverse students. The solution must be affordable and easy to deploy.</div>
+                                <div class="problem-impact">To ensure that all people, regardless of physical or cognitive ability, can fully and independently participate in the digital world, in line with the principle of leaving no one behind.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">AI Auditing for Algorithmic Bias</div>
+                                <div class="problem-context">As AI and algorithms are increasingly used in critical life decisions—such as hiring, credit lending, and criminal justice—we risk "embedding existing patterns of inequality" at a systemic level. A biased algorithm can perpetuate discrimination at an unprecedented scale.</div>
+                                <div class="problem-challenge">Develop a "bias and fairness" auditing toolkit. This software must be able to test third-party AI models (including "black box" systems) for discriminatory outcomes based on protected classes like race, gender, or age. The tool should provide a "fairness score" and, ideally, suggest mitigation strategies for developers.</div>
+                                <div class="problem-impact">To promote "non-discriminatory laws and policies" in the digital age by creating a technical tool to hold algorithmic systems accountable, reduce systemic bias, and build trust.</div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
             
             <div class="domain-container">
                 <h3 class="domain-title"><i class="fas fa-globe-americas"></i> Domain 2: Planet — Cleantech and Environmental Systems Innovation</h3>
-                <p class="domain-description">This domain addresses the urgent need to protect our planet's natural resources. It focuses on the technological and systems-level innovations required to deliver clean water, sustainable energy, and resilient cities.</p>
+                <p class="domain-description">This domain addresses the urgent need to protect our planet's natural resources. It focuses on the technological and systems-level innovations required to deliver clean water, sustainable energy, and resilient cities, while protecting our climate and the biodiversity on land and below water.</p>
                 
                 <div class="sdg-grid">
                     <!-- SDG 6 -->
@@ -676,20 +854,246 @@
                         <div class="problem-list">
                             <div class="problem-item">
                                 <div class="problem-title">IoT-Based Smart Water Management</div>
-                                <div class="problem-context">Up to 50% of treated water is lost to leaks and theft in urban areas.</div>
-                                <div class="problem-challenge">Design a low-cost, scalable IoT system for monitoring water flow and quality.</div>
-                                <div class="problem-impact">Significantly improve water efficiency and reduce waste.</div>
+                                <div class="problem-context">Water resource management is a critical environmental challenge. In many urban areas, up to 50% of treated water is lost to leaks and theft, known as "non-revenue water". In agriculture, inefficient irrigation wastes vast quantities of this finite resource.</div>
+                                <div class="problem-challenge">Design and prototype a low-cost, scalable IoT system for smart water management. The solution must use sensors to monitor water flow, pressure, and quality in real-time within a distribution network. An accompanying data dashboard must use this data to automatically detect leaks, predict demand, and enable holistic, "source-to-sea" management.</div>
+                                <div class="problem-impact">To significantly improve water efficiency, reduce waste, and build resilience in urban and agricultural water infrastructure, contributing to both SDG 6 and SDG 11.</div>
                             </div>
                             <div class="problem-item">
-                                <div class="problem-title">Decentralized Water Purification</div>
-                                <div class="problem-context">Billions lack access to safe drinking water, especially in remote communities.</div>
-                                <div class="problem-challenge">Develop a low-cost, durable water purification unit capable of operating off-grid.</div>
-                                <div class="problem-impact">Provide safe drinking water to communities unserved by traditional infrastructure.</div>
+                                <div class="problem-title">Decentralized Water Purification Technology</div>
+                                <div class="problem-context">Billions of people still lack access to safe and affordable drinking water. Centralized water treatment plants are often not economically or geographically feasible for remote, rural, or low-income communities. There is a critical need for new "wastewater treatment, recycling and reuse technologies".</div>
+                                <div class="problem-challenge">Develop a prototype for a low-cost, durable, and decentralized water purification or desalination unit. The solution must be capable of operating "off-grid" (e.g., using solar power, per SDG 7), be maintainable by a local community, and effectively treat common local contaminants (e.g., bacteriological, heavy metals, or high salinity).</div>
+                                <div class="problem-impact">To provide a pathway for safe and affordable drinking water to communities currently unserved by traditional infrastructure, improving health and reducing water-borne diseases.</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Additional SDGs would follow the same pattern -->
+                    <!-- SDG 7 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #FCC30B;">
+                            <div class="sdg-number">7</div>
+                            <div class="sdg-name">Affordable and Clean Energy</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Innovation in Long-Duration Energy Storage</div>
+                                <div class="problem-context">The "intermittency" of renewable energy sources (i.e., the sun does not always shine, the wind does not always blow) is the single greatest technical barrier to their widespread adoption. This has created a critical need for "flow batteries, pumped hydro, and thermal storage".</div>
+                                <div class="problem-challenge">Propose and model a novel, low-cost, and environmentally sound solution for large-scale, long-duration (e.g., 8+ hours) energy storage. This could be a new flow battery chemistry, a high-efficiency thermal storage system, or an innovative "green hydrogen" production and storage model.</div>
+                                <div class="problem-impact">To "unlock" a 100% renewable energy grid by solving the problem of intermittency, directly enabling SDG 7 and providing a cornerstone solution for SDG 13 (Climate Action).</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Smart Microgrid Management Platform</div>
+                                <div class="problem-context">Nearly 800 million people lack access to electricity. For many remote communities, extension of the national grid is not viable. "Smart grid" and "distributed energy" solutions—or microgrids—are the key to providing reliable, clean energy and building resilience against grid failure in all communities.</div>
+                                <div class="problem-challenge">Develop a software platform for managing a decentralized, community-level microgrid. The platform must use AI to perform real-time load balancing between diverse assets (e.g., solar panels, batteries), manage peer-to-peer energy trading within the community, and optimize for grid stability and affordability.</div>
+                                <div class="problem-impact">To enable the rapid, cost-effective deployment of reliable, clean, and affordable energy in areas unreached by the traditional grid.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 11 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #FD9D24;">
+                            <div class="sdg-number">11</div>
+                            <div class="sdg-name">Sustainable Cities and Communities</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Circular Economy Waste-to-Value Platform</div>
+                                <div class="problem-context">Cities are engines of growth but also massive generators of waste, which pollutes air, soil, and water, threatening public health. The "circular economy," which designs out waste and pollution, is a key solution. A major barrier is the lack of at-source segregation and a functioning market for recycled materials.</div>
+                                <div class="problem-challenge">Design a "waste-to-value" platform that digitally connects urban waste generators (households, businesses) with waste processors (recyclers, composters). The solution must use gamification or financial incentives to encourage at-source segregation and create an efficient, transparent market for "waste" as a resource.</div>
+                                <div class="problem-impact">To transform urban waste from an environmental liability into a valuable asset, creating cleaner cities, reducing landfill use, and fostering new "green" economic opportunities.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Multimodal Smart Mobility Platform</div>
+                                <div class="problem-context">Urban mobility in many cities is defined by gridlock, inefficiency, and high carbon emissions, leading to air pollution and economic losses. Sustainable urban transport requires a shift away from single-occupancy cars and toward an integrated system of "public transport integration" and shared assets.</div>
+                                <div class="problem-challenge">Develop an integrated urban mobility platform that unifies all transport options (e.g., public transit, bike-share, EV charging stations, ride-share) into a single application. The system must provide real-time, AI-optimized routing that "nudges" users toward the most sustainable, cost-effective, and efficient multimodal journeys.</div>
+                                <div class="problem-impact">To reduce urban congestion and emissions while providing "safe, affordable, accessible, and sustainable transport" for all city dwellers.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 12 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #BF8B2E;">
+                            <div class="sdg-number">12</div>
+                            <div class="sdg-name">Responsible Consumption and Production</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Supply Chain Transparency for Sustainable Production</div>
+                                <div class="problem-context">Modern supply chains are vast, complex, and dangerously opaque. This "linear economy" model hides the true social and environmental costs of production, from carbon emissions to exploitative labor. Consumers are increasingly demanding sustainable and ethically-produced goods but lack the trustworthy data to make informed choices.</div>
+                                <div class="problem-challenge">Use a combination of technologies (e.g., blockchain, IoT sensors, satellite imaging) to create a "digital passport" for a physical product (e.g., a cotton t-shirt, a bag of coffee). This passport must provide consumers with verifiable, end-to-end, un-tamperable proof of the product's sustainable and ethical sourcing.</div>
+                                <div class="problem-impact">To empower "responsible consumption" by making supply chains transparent, holding producers accountable, and rewarding truly sustainable practices.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Platform for the "Circular Economy" Asset-Sharing</div>
+                                <div class="problem-context">Our "linear economy" is built on a "take-make-dispose" model. A "circular economy" is designed to continuously reuse resources and reduce waste. High-value assets—such as industrial tools, medical devices, or construction equipment—often sit idle for most of their lifespan, representing massive inefficiency.</div>
+                                <div class="problem-challenge">Develop a B2B "asset-sharing" platform. This "Internet of Things" (IoT) enabled marketplace must allow companies to safely and efficiently rent out their idle equipment to other businesses. The platform must manage logistics, insurance, and real-time asset tracking.</div>
+                                <div class="problem-impact">To accelerate the shift to a circular economy by moving from a model of "ownership" to "access," maximizing the utility and lifespan of physical assets and reducing the need for new production.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 13 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #3F7E44;">
+                            <div class="sdg-number">13</div>
+                            <div class="sdg-name">Climate Action</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">AI for Climate-Related Disaster Resilience</div>
+                                <div class="problem-context">Climate change is increasing the frequency and severity of extreme weather events, such as floods, droughts, and wildfires. Building resilience requires the ability to predict these events and provide "Early Warning for All".</div>
+                                <div class="problem-challenge">Develop an AI-powered early warning system for a specific climate-related disaster. The system must integrate diverse, large-scale datasets (e.g., weather models, satellite remote sensing, ground sensor data) to generate high-resolution predictive models and disseminate clear, timely, and actionable alerts to at-risk populations.</div>
+                                <div class="problem-impact">To build societal resilience to climate shocks, save lives and property, and provide a critical tool for national adaptation plans.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Digital Measurement, Reporting, and Verification (MRV) for Carbon Markets</div>
+                                <div class="problem-context">Carbon markets are a key mechanism for financing climate action by allowing polluters to "offset" their emissions by paying for conservation or carbon-negative projects. However, these markets are plagued by a lack of trust, transparency, and high verification costs. It is difficult to prove that a carbon offset is real, permanent, and additional.</div>
+                                <div class="problem-challenge">Create a digital MRV platform to bring trust and automation to carbon markets. The solution must use technology (e.g., satellite remote sensing for forest cover, IoT sensors for soil carbon, blockchain for a transparent registry) to automatically and transparently measure, report, and verify carbon sequestration or emissions reductions in real-time.</div>
+                                <div class="problem-impact">To bring radical transparency and scalability to carbon markets, unlocking billions in private finance for climate action (SDG 13) and the protection of forests and ecosystems (SDG 15).</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 14 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #0A97D9;">
+                            <div class="sdg-number">14</div>
+                            <div class="sdg-name">Life Below Water</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Ocean Debris and Pollutant Tracking System</div>
+                                <div class="problem-context">Our oceans are choking on plastic debris and chemical pollutants, which threaten marine biodiversity and enter the human food chain. The diffuse nature of this pollution makes it difficult to track, clean up, and hold polluters accountable.</div>
+                                <div class="problem-challenge">Design a system (e.g., using autonomous ocean drones, AI-powered analysis of satellite imagery, or "digital twin" ocean current models) to monitor, track, and predict the accumulation of marine debris and pollutants. The system must be able to identify major accumulation hotspots and trace pollution back to its source.</div>
+                                <div class="problem-impact">To provide the high-resolution data necessary for targeted, efficient cleanup efforts and for the enforcement of anti-pollution policies, contributing to both SDG 14 and SDG 12.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Tech for Sustainable Aquaculture</div>
+                                <div class="problem-context">As wild fish stocks collapse, aquaculture (fish farming) is rapidly expanding to meet global demand for protein. However, intensive aquaculture can create its own severe environmental problems, including water pollution, disease outbreaks, and the destruction of coastal habitats.</div>
+                                <div class="problem-challenge">Develop an IoT and AI-powered management system for sustainable aquaculture. The solution must use a network of in-water sensors to monitor key parameters in real-time (e.g., water quality, dissolved oxygen, fish health indicators, feed levels). An AI-driven dashboard must then optimize resource use (especially feed) and minimize the farm's environmental footprint.</div>
+                                <div class="problem-impact">To make aquaculture more sustainable and efficient, ensuring it can be a long-term solution for global food security (SDG 2) without destroying marine ecosystems (SDG 14).</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 15 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #56C02B;">
+                            <div class="sdg-number">15</div>
+                            <div class="sdg-name">Life On Land</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Real-Time Deforestation and Land Degradation Monitoring</div>
+                                <div class="problem-context">Terrestrial ecosystems, especially forests, are vital "lungs of the planet" and hotspots of biodiversity. Yet, illegal logging and land degradation continue at an alarming rate, often happening in remote areas too quickly for authorities to intervene.</div>
+                                <div class="problem-challenge">Create a real-time, high-resolution monitoring and alert system for deforestation and land degradation. The solution must fuse data from multiple sources (e.g., public satellites like Sentinel, high-resolution commercial imagery, and on-ground IoT-based audio sensors to "hear" chainsaws). An AI model must analyze this data to detect and verify illegal activity, automatically alerting authorities.</div>
+                                <div class="problem-impact">To "halt and reverse land degradation" by providing a powerful, undeniable tool for transparency, law enforcement, and ecosystem protection.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Digital Biodiversity Tracking and Poaching Prevention</div>
+                                <div class="problem-context">We are in the midst of a biodiversity crisis, with poaching and habitat loss driving thousands of species toward extinction. Traditional conservation methods (like physical ranger patrols and invasive radio collars) are often expensive, dangerous, and insufficient to cover the vast areas that need protection.</div>
+                                <div class="problem-challenge">Develop a non-invasive, scalable system for tracking and protecting endangered wildlife. This could involve a network of AI-powered "smart" camera traps that use image recognition to identify both animals and poachers, acoustic sensors that detect gunshots or vehicles, or a data-driven model that predicts poaching "hotspots" to optimize ranger patrols.</div>
+                                <div class="problem-impact">To halt biodiversity loss by providing a scalable, low-cost, and effective technology for wildlife conservation and anti-poaching efforts.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="domain-container">
+                <h3 class="domain-title"><i class="fas fa-building"></i> Domain 3: Prosperity and Peace — Infrastructure and Institutional Technology</h3>
+                <p class="domain-description">This domain focuses on the underlying systems that enable societies to function and thrive. It addresses the need for decent work, innovative and resilient infrastructure, and the accountable, peaceful institutions that serve as the foundation for all other goals.</p>
+                
+                <div class="sdg-grid">
+                    <!-- SDG 8 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #A21942;">
+                            <div class="sdg-number">8</div>
+                            <div class="sdg-name">Decent Work and Economic Growth</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Industry 4.0 for SME Productivity</div>
+                                <div class="problem-context">Target 8.2 explicitly calls for "technological upgrading and innovation" to boost economic productivity. While large corporations are adopting "Industry 4.0" (e.g., IoT, AI, robotics), the small and medium-sized enterprises (SMEs) that form the backbone of most economies are being left behind due to high cost and complexity.</div>
+                                <div class="problem-challenge">Develop a low-cost, modular "Industry 4.0" toolkit for SMEs in the manufacturing or logistics sector. This could include a simple IoT solution for predictive maintenance on old machinery, an AI-powered camera system for quality control, or a basic platform for supply chain optimization.</div>
+                                <div class="problem-impact">To "diversify, innovate and upgrade" the SME sector, boosting its productivity, competitiveness, and ability to create "sustained, inclusive" economic growth.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Ethical Gig Economy Platform</div>
+                                <div class="problem-context">Digital platforms have created millions of "gig work" opportunities, contributing to economic growth. However, this model often fails the "decent work" aspect of SDG 8. Many gig workers lack fair pay, job security, or access to "social protection", operating as precarious, disempowered contractors.</div>
+                                <div class="problem-challenge">Design the architecture for a "worker-centric" gig economy platform. This solution must be structured (perhaps as a digital cooperative) to ensure fair and transparent algorithms, mechanisms for "decent job creation," portable social benefits (e.g., insurance, pensions) for workers, and pathways for "entrepreneurship".</div>
+                                <div class="problem-impact">To create a new, ethical model for the digital economy that provides both flexibility and "full and productive employment and decent work for all".</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 9 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #FD6925;">
+                            <div class="sdg-number">9</div>
+                            <div class="sdg-name">Industry, Innovation and Infrastructure</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Digital Twin for Resilient Infrastructure</div>
+                                <div class="problem-context">SDG 9 calls for "quality, reliable, sustainable and resilient infrastructure". Climate change and other shocks place unprecedented stress on our critical physical infrastructure (e.g., bridges, power grids, water systems). The traditional "fail and fix" maintenance model is no longer sufficient.</div>
+                                <div class="problem-challenge">Develop a "Digital Twin" platform for a specific, critical piece of urban or rural infrastructure. This platform must use real-time IoT sensor data (e.g., from strain gauges, vibration sensors) to model the infrastructure's health, use AI for predictive maintenance (i.e., predicting failure points), and run simulations to test its resilience against various shocks.</div>
+                                <div class="problem-impact">To enable true "sustainable and resilient infrastructure development" by shifting from a reactive "fail and fix" model to a proactive "predict and prevent" model.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Open Innovation Platform for R&D</div>
+                                <div class="problem-context">Target 9.5 calls for enhancing scientific research and increasing R&D workers. However, groundbreaking research is often siloed within individual university labs or corporate R&D departments, and "foster[ing] innovation" requires new models of collaboration.</div>
+                                <div class="problem-challenge">Create a collaborative "open innovation" platform that connects industrial and social "challenge-holders" (e.g., a company needing a new material, an NGO needing a new device) with university researchers and independent innovators ("solvers"). The platform must facilitate "knowledge sharing", project management, and rapid IP agreements.</div>
+                                <div class="problem-impact">To accelerate "domestic technology development, research and innovation" by breaking down institutional silos and efficiently connecting real-world problems to novel solutions.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 16 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #00689D;">
+                            <div class="sdg-number">16</div>
+                            <div class="sdg-name">Peace, Justice and Strong Institutions</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">CivicTech for Institutional Transparency</div>
+                                <div class="problem-context">SDG 16 calls for "effective, accountable and inclusive institutions". Corruption, bribery, and a lack of transparency erode public trust, divert funds from critical services, and are a primary obstacle to development.</div>
+                                <div class="problem-challenge">Develop a "CivicTech" platform to "enhance the transparency and accountability of public institutions". This could be a tool for tracking public budgets and expenditures in real-time, an open-data platform for monitoring government performance, or a secure, encrypted, and anonymous whistleblowing platform for reporting corruption.</div>
+                                <div class="problem-impact">To "substantially reduce corruption" and build "strong institutions" by empowering citizens, journalists, and oversight bodies with access to information.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Digital Platform for Access to Justice</div>
+                                <div class="problem-context">"Access to justice for all" is a cornerstone of SDG 16. However, for billions of people, legal services are unaffordable, geographically inaccessible, or intimidating. This disproportionately affects marginalized groups.</div>
+                                <div class="problem-challenge">Create a digital platform to "facilitate access to justice for marginalized groups". This solution could be an AI-powered "legal chatbot" that provides information on basic rights and procedures, a platform for "remote access to legal resources", or a system to streamline and manage "virtual court hearings" for simple cases.</div>
+                                <div class="problem-impact">To democratize the legal system, "promote the rule of law", and ensure that justice is not just a privilege for the wealthy but an accessible right for all.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SDG 17 -->
+                    <div class="sdg-card">
+                        <div class="sdg-header" style="background-color: #19486A;">
+                            <div class="sdg-number">17</div>
+                            <div class="sdg-name">Partnerships for the Goals</div>
+                        </div>
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <div class="problem-title">Global Platform for SDG Technology Transfer</div>
+                                <div class="problem-context">SDG 17 is the "meta-goal" that enables the other 16. Target 17.7 explicitly promotes the "transfer, dissemination and diffusion of environmentally sound technologies to developing countries". Target 17.8 calls for a "technology bank". A key barrier is that proven solutions remain siloed.</div>
+                                <div class="problem-challenge">Design a "global technology facilitation mechanism". This platform must act as an open-source "clearinghouse" or "app store" for proven, low-cost, SDG-related technologies (e.g., 3D-printable medical devices, open-source microgrid designs, water filtration plans). The platform must connect solution-providers with communities and partners who need them.</div>
+                                <div class="problem-impact">To "strengthen the science, technology and innovation capacity" of developing countries by creating an efficient, global mechanism for technology and knowledge transfer.</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-title">Multi-Stakeholder Data-Sharing Platform</div>
+                                <div class="problem-context">Achieving the complex, interconnected SDGs requires "multi-stakeholder partnerships that mobilize and share knowledge". However, vital data is often locked in silos within governments, private companies, and civil society. Trust and technical barriers prevent the "exchange of data and information" needed for collaborative action.</div>
+                                <div class="problem-challenge">Develop a secure, federated data-sharing platform. The platform's architecture must allow different organizations to share insights from their data without sharing the raw data itself (e.g., using federated learning, differential privacy, or other privacy-preserving techniques).</div>
+                                <div class="problem-impact">To enable effective "partnerships between governments, the private sector and civil society" by creating the trusted technical infrastructure necessary for large-scale data collaboration.</div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
@@ -701,8 +1105,8 @@
                     <a href="#rules" class="btn btn-primary">
                         <i class="fas fa-book"></i> Review Rules
                     </a>
-                    <a href="#register" class="btn btn-secondary">
-                        <i class="fas fa-rocket"></i> Start Your Project
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contact Us
                     </a>
                 </div>
             </div>
@@ -781,20 +1185,20 @@
             </div>
         </section>
         
-        <section id="register">
-            <h2 class="section-title">Register Now</h2>
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
             <div class="hero-cta">
-                <h3 class="cta-title">Join the Pitchathon Today!</h3>
-                <p>Don't miss this opportunity to showcase your innovative ideas and make a real impact on global challenges. Registration is open to all currently enrolled students.</p>
+                <h3 class="cta-title">Have Questions About Pitchathon 2025?</h3>
+                <p>Reach out to our team for any inquiries about the event, rules, or problem statements.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i> Register Your Team
+                    <a href="mailto:pitchathon2025@example.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Email Us
                     </a>
                     <a href="#domains" class="btn btn-secondary">
-                        <i class="fas fa-question-circle"></i> Need More Info?
+                        <i class="fas fa-lightbulb"></i> View Challenges
                     </a>
                 </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Have questions? Contact us at pitchathon@example.com</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">We're here to help you succeed in your Pitchathon journey!</p>
             </div>
         </section>
     </main>
@@ -805,15 +1209,29 @@
                 <a href="#about" class="footer-link">About</a>
                 <a href="#domains" class="footer-link">Challenges</a>
                 <a href="#rules" class="footer-link">Rules</a>
-                <a href="#register" class="footer-link">Register</a>
-                <a href="#" class="footer-link">Contact</a>
+                <a href="#contact" class="footer-link">Contact</a>
             </div>
-            <p class="footer-text">Pitchathon - A Technical Symposium for Sustainable Development</p>
-            <p class="footer-text">© 2023 Pitchathon. All rights reserved.</p>
+            <p class="footer-text">Pitchathon 2025 - A Technical Symposium for Sustainable Development</p>
+            <p class="footer-text">© 2025 Pitchathon. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+        
         // Simple navigation highlighting
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -851,7 +1269,94 @@
                     });
                 });
             });
+            
+            // Initialize 3D animation
+            init3DAnimation();
         });
+        
+        // 3D Animation with Three.js
+        function init3DAnimation() {
+            const container = document.getElementById('animation-container');
+            
+            // Create scene
+            const scene = new THREE.Scene();
+            
+            // Create camera
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // Create renderer
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+            
+            // Create floating geometric shapes
+            const geometries = [
+                new THREE.IcosahedronGeometry(0.5, 0),
+                new THREE.OctahedronGeometry(0.4, 0),
+                new THREE.TetrahedronGeometry(0.6, 0),
+                new THREE.DodecahedronGeometry(0.5, 0)
+            ];
+            
+            const materials = [
+                new THREE.MeshBasicMaterial({ color: 0x2E86AB, wireframe: true }),
+                new THREE.MeshBasicMaterial({ color: 0xA23B72, wireframe: true }),
+                new THREE.MeshBasicMaterial({ color: 0xF18F01, wireframe: true }),
+                new THREE.MeshBasicMaterial({ color: 0x4CAF50, wireframe: true })
+            ];
+            
+            const objects = [];
+            
+            // Create multiple floating objects
+            for (let i = 0; i < 15; i++) {
+                const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+                const material = materials[Math.floor(Math.random() * materials.length)];
+                const mesh = new THREE.Mesh(geometry, material);
+                
+                // Random position
+                mesh.position.x = (Math.random() - 0.5) * 20;
+                mesh.position.y = (Math.random() - 0.5) * 20;
+                mesh.position.z = (Math.random() - 0.5) * 10;
+                
+                // Random rotation speed
+                mesh.userData = {
+                    rotationSpeedX: (Math.random() - 0.5) * 0.01,
+                    rotationSpeedY: (Math.random() - 0.5) * 0.01,
+                    rotationSpeedZ: (Math.random() - 0.5) * 0.01,
+                    floatSpeed: (Math.random() - 0.5) * 0.005
+                };
+                
+                scene.add(mesh);
+                objects.push(mesh);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate and float objects
+                objects.forEach(obj => {
+                    obj.rotation.x += obj.userData.rotationSpeedX;
+                    obj.rotation.y += obj.userData.rotationSpeedY;
+                    obj.rotation.z += obj.userData.rotationSpeedZ;
+                    
+                    // Gentle floating motion
+                    obj.position.y += Math.sin(Date.now() * 0.001 + obj.position.x) * obj.userData.floatSpeed;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+        }
     </script>
 </body>
 </html>
