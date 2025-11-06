@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitchathon: Problem Statements</title>
+    <style>
+        /* --- Basic Setup --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #007bff;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.15em;
+            color: #555;
+            margin: 10px 0 0 0;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0 20px;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Content Typography --- */
+        h2 {
+            color: #0056b3;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #1a1a1a;
+            margin-top: 35px;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #007bff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        em {
+            color: #555;
+            font-style: italic;
+        }
+        
+        strong {
+            color: #111;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Problem Statement Styling --- */
+        .problem-statement {
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-left: 5px solid #007bff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .problem-statement p {
+            margin-bottom: 10px;
+        }
+
+        .problem-statement strong {
+            font-size: 1.05em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* --- Rules & Table Styling --- */
+        section#part2 h3 {
+            color: #d9534f; /* Different color for rules */
+        }
+        
+        section#part2 h3 {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        thead {
+            background-color: #f2f2f2;
+        }
+        
+        th {
+            font-weight: 600;
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Pitchathon: Technical Challenge Matrix</h1>
+            <p>Welcome, innovators! As your host, I'm thrilled to have all 60 of you registered. Here are the challenges. Good luck!</p>
+        </header>
+
+        <nav>
+            <a href="#part1">Problem Statements</a>
+            <a href="#part2">Rules & Regulations</a>
+        </nav>
+
+        <section id="part1">
+            <h2>Part I: Pitchathon Problem Statements</h2>
+            
+            <h3>Introduction to the Challenge Framework</h3>
+            <p>The 2030 Agenda for Sustainable Development represents a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. Achieving these 17 Sustainable Development Goals (SDGs) is not merely a policy ambition; it is one of the most complex technical and implementation challenges of our time. The United Nations has identified technology, science, and innovation as major pillars and a primary "means of implementation" for this agenda.</p>
+            <p>This "Pitchathon" is a direct response to that call to action. It challenges the next generation of engineers, developers, scientists, and innovators to design and prototype the specific technical solutions required to bridge the gap between global goals and on-the-ground reality. The following 34 problem statements are framed as targeted technical challenges, each providing a specific context, a clear technical mandate, and a description of the desired impact, inviting participants to apply their skills to the world's most pressing problems.</p>
+
+            <h2>Domain 1: People — Social and Economic Digital Transformation</h2>
+            <p>This domain focuses on ending poverty and hunger, ensuring healthy and educated lives, and achieving equity and equality for all. It addresses the fundamental human-centric goals necessary for a stable and prosperous society.</p>
+
+            <h3>SDG 1: No Poverty</h3>
+            <em>(End poverty in all its forms everywhere)</em>
+            
+            <div class="problem-statement">
+                <h4>Problem Statement 1.1: FinTech for Radical Financial Inclusion</h4>
+                <p><strong>Context:</strong> Extreme poverty, defined as living on less than $2.15 a day, is a condition trapping hundreds of millions. A key driver of this trap is exclusion from formal financial systems. These "unbanked" populations, often rural, female, or in the informal economy, lack access to the basic tools of economic mobility: secure credit, insurance, savings, and payments.</p>
+                <p><strong>The Technical Challenge:</strong> Design a decentralized or mobile-first financial technology (FinTech) platform. This solution must provide a verifiable, low-cost digital identity and offer access to at least one key financial service (e.g., micro-credit, micro-insurance). The design must be resilient and usable for populations with intermittent connectivity and varying levels of literacy.</p>
+                <p><strong>Desired Impact:</strong> To democratize access to financial services, foster entrepreneurship, and help implement a "social protection floor" for the world's most vulnerable populations.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 1.2: AI-Driven Social Protection Systems</h4>
+                <p><strong>Context:</strong> Social protection systems (like cash transfers or food aid) are critical for preventing people from falling into extreme poverty. However, these systems are often reactive, slow, and inefficient, struggling to identify and reach the most vulnerable, especially during sudden-onset crises like climate disasters or economic shocks.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a data analytics and AI-powered "Dynamic Vulnerability" model. This system must ingest and integrate diverse, non-traditional data sources (e.g., satellite imagery, mobile network data, food-price feeds) to create a high-resolution, real-time map of poverty and vulnerability. The model should enable predictive, automated targeting of aid.</p>
+                <p><strong>Desired Impact:</strong> To transform social protection from a reactive to a predictive model, ensuring aid reaches the right people at the right time, minimizing human suffering and strengthening community resilience.</p>
+            </div>
+
+            <h3>SDG 2: Zero Hunger</h3>
+            <em>(End hunger, achieve food security and improved nutrition and promote sustainable agriculture)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 2.1: The Digital Extension Agent</h4>
+                <p><strong>Context:</strong> A significant portion of the world's food is produced by small-scale farmers, yet they are often the most food-insecure. This paradox exists because they lack access to critical information: hyper-local weather data, climate-smart agricultural techniques, pest control advice, and fair market pricing.</p>
+                <p><strong>The Technical Challenge:</strong> Create a mobile-first, AI-powered advisory platform (a "Digital Extension Agent") for smallholder farmers. To overcome literacy barriers, the platform must prioritize voice and audio-based interfaces. It must deliver actionable, hyper-local advice on pest control, meteorological data, and market pricing to improve yields and income.</p>
+                <p><strong>Desired Impact:</strong> To contribute to the goal of doubling agricultural productivity and incomes of small-scale food producers by democratizing access to actionable, climate-smart knowledge.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 2.2: Blockchain for Food System Transparency</h4>
+                <p><strong>Context:</strong> The global food system is plagued by inefficiency. An estimated one-third of all food produced globally is lost or wasted. This loss occurs at every stage of the supply chain, from post-harvest losses due to poor storage to retail and consumer waste, all of which is exacerbated by opaque and untraceable supply chains.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a traceability solution using a combination of IoT sensors and blockchain technology to track a food product from farm to consumer. The system must monitor and record key metrics (e.g., temperature, humidity, location) in real-time on an immutable ledger, identifying wastage hotspots and providing verifiable proof of origin.</p>
+                <p><strong>Desired Impact:</strong> To drastically reduce food loss and waste by creating a transparent, accountable, and highly efficient global food supply chain.</p>
+            </div>
+            
+            <h3>SDG 3: Good Health and Well-being</h3>
+            <em>(Ensure healthy lives and promote well-being for all at all ages)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 3.1: AI-Powered Diagnostics for Remote and Low-Resource Areas</h4>
+                <p><strong>Context:</strong> Millions of people in low-resource settings die from preventable or treatable diseases (including complications in childbirth, contributing to high maternal mortality) because they lack access to basic diagnostic services. There is a global shortage of specialists, like radiologists and ophthalmologists, to interpret medical images.</p>
+                <p><strong>The Technical Challenge:</strong> Develop an AI/Machine Learning model that can perform high-accuracy disease diagnosis using a low-cost, low-power mobile device. The solution (e.g., analyzing chest X-rays for tuberculosis, or retinal scans for diabetic retinopathy) must be deployable offline and designed for use by a community health worker with minimal training.</p>
+                <p><strong>Desired Impact:</strong> To democratize medical diagnostics, bringing specialist-level knowledge to primary care clinics and remote villages, thereby saving lives and improving health outcomes.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 3.2: Gamified Mental Wellness Platform for Youth</h4>
+                <p><strong>Context:</strong> SDG 3's mandate to "promote well-being for all" explicitly includes mental health. Yet, a global mental health crisis is growing, particularly among young people. Traditional therapy is often inaccessible, unaffordable, or highly stigmatized, preventing youth from seeking help.</p>
+                <p><strong>The Technical Challenge:</strong> Create an engaging, "gamified" mobile application that promotes mental well-being and emotional resilience for youth. The platform's design must be grounded in evidence-based clinical practices (e.g., CBT, mindfulness) and provide users with positive coping tools and access to peer-support networks, all while ensuring robust data privacy and user safety.</p>
+                <p><strong>Desired Impact:</strong> To reduce the stigma surrounding mental health and provide a free, accessible, and engaging "first step" for young people to build mental resilience and connect with support systems.</p>
+            </div>
+
+            <h3>SDG 4: Quality Education</h3>
+            <em>(Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 4.1: Personalized AI Tutor for K-12</h4>
+                <p><strong>Context:</strong> The "one-size-fits-all" model of traditional education struggles to meet the diverse needs of all students, leading to significant learning gaps. This inequality is exacerbated in overcrowded, under-resourced classrooms. Personalized career guidance and adaptive learning are urgently needed.</p>
+                <p><strong>The Technical Challenge:</strong> Develop an AI-powered personalized learning platform that functions as a 24/7 "AI Tutor." The system must be able to assess a student's knowledge level, adapt to their individual learning pace, identify knowledge gaps, and provide a customized curriculum of content (e.g., interactive exercises, videos, quizzes) to achieve subject mastery, especially in foundational skills.</p>
+                <p><strong>Desired Impact:</strong> To bridge learning gaps and provide high-quality, personalized education at scale, offering every student a pathway to mastery regardless of their school's resources.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 4.2: Digital Upskilling Platform for Lifelong Learning</h4>
+                <p><strong>Context:</strong> SDG 4 promotes "lifelong learning opportunities for all". In an era of rapid technological change and automation, the traditional "one-time" degree model is obsolete. Workers and professionals must constantly re-skill to remain relevant in the labor market.</p>
+                <p><strong>The Technical Challenge:</strong> Design an online platform focused on "micro-credentials" and project-based learning for high-demand technical and green-economy skills. The solution must use an AI-driven "skills-mapping" engine to analyze a user's current abilities, suggest a personalized "upskilling roadmap," and connect them with mentors and potential employers.</p>
+                <p><strong>Desired Impact:</strong> To create a flexible, accessible, and effective ecosystem for lifelong learning and career-switching, empowering the global workforce to adapt to the future of work.</p>
+            </div>
+
+            <h3>SDG 5: Gender Equality</h3>
+            <em>(Achieve gender equality and empower all women and girls)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 5.1: Tech-Enabled Safe Spaces and Alert Systems</h4>
+                <p><strong>Context:</strong> A key target of SDG 5 is the elimination of all forms of violence against women and girls in public and private spheres. The fear or reality of violence acts as a profound barrier, limiting women's mobility, access to education, and participation in the economy.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a "digital safe space" solution. This could be a low-cost, discreet wearable device or a mobile application that integrates with trusted community networks (e.g., family, friends, local security). The solution must feature a rapid, one-touch alert system and must be designed to prioritize user privacy and function reliably in low-connectivity environments.</p>
+                <p><strong>Desired Impact:</strong> To reduce the incidence of violence against women and improve their safety and mobility, thereby increasing their access to educational and economic opportunities.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 5.2: Platform for Women Entrepreneurs in the Digital Economy</h4>
+                <p><strong>Context:</strong> Digital technologies offer immense potential to "open possibilities for increased employment and business opportunities" for women. However, a persistent "digital divide" and structural inequalities mean women are often left behind, with technology "perpetuating and embedding existing patterns of gender inequality".</p>
+                <p><strong>The Technical Challenge:</strong> Create an integrated platform (web and mobile) designed specifically to empower female entrepreneurs in developing economies. The platform must be a one-stop-shop that combines three key pillars: 1) access to financial services (e.g., FinTech micro-loans), 2) digital skills training, and 3) a secure e-commerce marketplace to sell products and services globally.</p>
+                <p><strong>Desired Impact:</strong> To help close the gender-based digital and economic divide by providing women with the tools, capital, and market access needed to build and scale their businesses.</p>
+            </div>
+
+            <h3>SDG 10: Reduced Inequalities</h3>
+            <em>(Reduce inequality within and among countries)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 10.1: Assistive Technology for Digital Inclusion</h4>
+                <p><strong>Context:</strong> Inequality is dramatically exacerbated by the digital divide, which disproportionately affects persons with disabilities (PWDs). A lack of accessible education tools and assistive technology (AT) creates critical barriers, effectively locking millions out of the modern economy, education, and civic life.</p>
+                <p><strong>The Technical Challenge:</strong> Design an open-source, low-cost assistive technology solution. This could be an AI-powered screen reader for the visually impaired that functions in local dialects, a gesture- or voice-control system for those with motor impairments, or adaptive learning tools for neurodiverse students. The solution must be affordable and easy to deploy.</p>
+                <p><strong>Desired Impact:</strong> To ensure that all people, regardless of physical or cognitive ability, can fully and independently participate in the digital world, in line with the principle of leaving no one behind.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 10.2: AI Auditing for Algorithmic Bias</h4>
+                <p><strong>Context:</strong> As AI and algorithms are increasingly used in critical life decisions—such as hiring, credit lending, and criminal justice—we risk "embedding existing patterns of inequality" at a systemic level. A biased algorithm can perpetuate discrimination at an unprecedented scale.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a "bias and fairness" auditing toolkit. This software must be able to test third-party AI models (including "black box" systems) for discriminatory outcomes based on protected classes like race, gender, or age. The tool should provide a "fairness score" and, ideally, suggest mitigation strategies for developers.</p>
+                <p><strong>Desired Impact:</strong> To promote "non-discriminatory laws and policies" in the digital age by creating a technical tool to hold algorithmic systems accountable, reduce systemic bias, and build trust.</p>
+            </div>
+
+            <h2>Domain 2: Planet — Cleantech and Environmental Systems Innovation</h2>
+            <p>This domain addresses the urgent need to protect our planet's natural resources. It focuses on the technological and systems-level innovations required to deliver clean water, sustainable energy, and resilient cities, while protecting our climate and the biodiversity on land and below water.</p>
+
+            <h3>SDG 6: Clean Water and Sanitation</h3>
+            <em>(Ensure availability and sustainable management of water and sanitation for all)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 6.1: IoT-Based Smart Water Management</h4>
+                <p><strong>Context:</strong> Water resource management is a critical environmental challenge. In many urban areas, up to 50% of treated water is lost to leaks and theft, known as "non-revenue water". In agriculture, inefficient irrigation wastes vast quantities of this finite resource.</p>
+                <p><strong>The Technical Challenge:</strong> Design and prototype a low-cost, scalable IoT system for smart water management. The solution must use sensors to monitor water flow, pressure, and quality in real-time within a distribution network. An accompanying data dashboard must use this data to automatically detect leaks, predict demand, and enable holistic, "source-to-sea" management.</p>
+                <p><strong>Desired Impact:</strong> To significantly improve water efficiency, reduce waste, and build resilience in urban and agricultural water infrastructure, contributing to both SDG 6 and SDG 11.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 6.2: Decentralized Water Purification Technology</h4>
+                <p><strong>Context:</strong> Billions of people still lack access to safe and affordable drinking water. Centralized water treatment plants are often not economically or geographically feasible for remote, rural, or low-income communities. There is a critical need for new "wastewater treatment, recycling and reuse technologies".</p>
+                <p><strong>The Technical Challenge:</strong> Develop a prototype for a low-cost, durable, and decentralized water purification or desalination unit. The solution must be capable of operating "off-grid" (e.g., using solar power, per SDG 7), be maintainable by a local community, and effectively treat common local contaminants (e.g., bacteriological, heavy metals, or high salinity).</p>
+                <p><strong>Desired Impact:</strong> To provide a pathway for safe and affordable drinking water to communities currently unserved by traditional infrastructure, improving health and reducing water-borne diseases.</p>
+            </div>
+
+            <h3>SDG 7: Affordable and Clean Energy</h3>
+            <em>(Ensure access to affordable, reliable, sustainable and modern energy for all)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 7.1: Innovation in Long-Duration Energy Storage</h4>
+                <p><strong>Context:</strong> The "intermittency" of renewable energy sources (i.e., the sun does not always shine, the wind does not always blow) is the single greatest technical barrier to their widespread adoption. This has created a critical need for "flow batteries, pumped hydro, and thermal storage".</p>
+                <p><strong>The Technical Challenge:</strong> Propose and model a novel, low-cost, and environmentally sound solution for large-scale, long-duration (e.g., 8+ hours) energy storage. This could be a new flow battery chemistry, a high-efficiency thermal storage system, or an innovative "green hydrogen" production and storage model.</p>
+                <p><strong>Desired Impact:</strong> To "unlock" a 100% renewable energy grid by solving the problem of intermittency, directly enabling SDG 7 and providing a cornerstone solution for SDG 13 (Climate Action).</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 7.2: Smart Microgrid Management Platform</h4>
+                <p><strong>Context:</strong> Nearly 800 million people lack access to electricity. For many remote communities, extension of the national grid is not viable. "Smart grid" and "distributed energy" solutions—or microgrids—are the key to providing reliable, clean energy and building resilience against grid failure in all communities.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a software platform for managing a decentralized, community-level microgrid. The platform must use AI to perform real-time load balancing between diverse assets (e.g., solar panels, batteries), manage peer-to-peer energy trading within the community, and optimize for grid stability and affordability.</p>
+                <p><strong>Desired Impact:</strong> To enable the rapid, cost-effective deployment of reliable, clean, and affordable energy in areas unreached by the traditional grid.</p>
+            </div>
+
+            <h3>SDG 11: Sustainable Cities and Communities</h3>
+            <em>(Make cities and human settlements inclusive, safe, resilient and sustainable)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 11.1: Circular Economy Waste-to-Value Platform</h4>
+                <p><strong>Context:</strong> Cities are engines of growth but also massive generators of waste, which pollutes air, soil, and water, threatening public health. The "circular economy," which designs out waste and pollution, is a key solution. A major barrier is the lack of at-source segregation and a functioning market for recycled materials.</p>
+                <p><strong>The Technical Challenge:</strong> Design a "waste-to-value" platform that digitally connects urban waste generators (households, businesses) with waste processors (recyclers, composters). The solution must use gamification or financial incentives to encourage at-source segregation and create an efficient, transparent market for "waste" as a resource.</p>
+                <p><strong>Desired Impact:</strong> To transform urban waste from an environmental liability into a valuable asset, creating cleaner cities, reducing landfill use, and fostering new "green" economic opportunities.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 11.2: Multimodal Smart Mobility Platform</h4>
+                <p><strong>Context:</strong> Urban mobility in many cities is defined by gridlock, inefficiency, and high carbon emissions, leading to air pollution and economic losses. Sustainable urban transport requires a shift away from single-occupancy cars and toward an integrated system of "public transport integration" and shared assets.</p>
+                <p><strong>The Technical Challenge:</strong> Develop an integrated urban mobility platform that unifies all transport options (e.g., public transit, bike-share, EV charging stations, ride-share) into a single application. The system must provide real-time, AI-optimized routing that "nudges" users toward the most sustainable, cost-effective, and efficient multimodal journeys.</p>
+                <p><strong>Desired Impact:</strong> To reduce urban congestion and emissions while providing "safe, affordable, accessible, and sustainable transport" for all city dwellers.</p>
+            </div>
+
+            <h3>SDG 12: Responsible Consumption and Production</h3>
+            <em>(Ensure sustainable consumption and production patterns)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 12.1: Supply Chain Transparency for Sustainable Production</h4>
+                <p><strong>Context:</strong> Modern supply chains are vast, complex, and dangerously opaque. This "linear economy" model hides the true social and environmental costs of production, from carbon emissions to exploitative labor. Consumers are increasingly demanding sustainable and ethically-produced goods but lack the trustworthy data to make informed choices.</p>
+                <p><strong>The Technical Challenge:</strong> Use a combination of technologies (e.g., blockchain, IoT sensors, satellite imaging) to create a "digital passport" for a physical product (e.g., a cotton t-shirt, a bag of coffee). This passport must provide consumers with verifiable, end-to-end, un-tamperable proof of the product's sustainable and ethical sourcing.</p>
+                <p><strong>Desired Impact:</strong> To empower "responsible consumption" by making supply chains transparent, holding producers accountable, and rewarding truly sustainable practices.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 12.2: Platform for the "Circular Economy" Asset-Sharing</h4>
+                <p><strong>Context:</strong> Our "linear economy" is built on a "take-make-dispose" model. A "circular economy" is designed to continuously reuse resources and reduce waste. High-value assets—such as industrial tools, medical devices, or construction equipment—often sit idle for most of their lifespan, representing massive inefficiency.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a B2B "asset-sharing" platform. This "Internet of Things" (IoT) enabled marketplace must allow companies to safely and efficiently rent out their idle equipment to other businesses. The platform must manage logistics, insurance, and real-time asset tracking.</p>
+                <p><strong>Desired Impact:</strong> To accelerate the shift to a circular economy by moving from a model of "ownership" to "access," maximizing the utility and lifespan of physical assets and reducing the need for new production.</p>
+            </div>
+
+            <h3>SDG 13: Climate Action</h3>
+            <em>(Take urgent action to combat climate change and its impacts)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 13.1: AI for Climate-Related Disaster Resilience</h4>
+                <p><strong>Context:</strong> Climate change is increasing the frequency and severity of extreme weather events, such as floods, droughts, and wildfires. Building resilience requires the ability to predict these events and provide "Early Warning for All".</p>
+                <p><strong>The Technical Challenge:</strong> Develop an AI-powered early warning system for a specific climate-related disaster. The system must integrate diverse, large-scale datasets (e.g., weather models, satellite remote sensing, ground sensor data) to generate high-resolution predictive models and disseminate clear, timely, and actionable alerts to at-risk populations.</p>
+                <p><strong>Desired Impact:</strong> To build societal resilience to climate shocks, save lives and property, and provide a critical tool for national adaptation plans.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 13.2: Digital Measurement, Reporting, and Verification (MRV) for Carbon Markets</h4>
+                <p><strong>Context:</strong> Carbon markets are a key mechanism for financing climate action by allowing polluters to "offset" their emissions by paying for conservation or carbon-negative projects. However, these markets are plagued by a lack of trust, transparency, and high verification costs. It is difficult to prove that a carbon offset is real, permanent, and additional.</p>
+                <p><strong>The Technical Challenge:</strong> Create a digital MRV platform to bring trust and automation to carbon markets. The solution must use technology (e.g., satellite remote sensing for forest cover, IoT sensors for soil carbon, blockchain for a transparent registry) to automatically and transparently measure, report, and verify carbon sequestration or emissions reductions in real-time.</p>
+                <p><strong>Desired Impact:</strong> To bring radical transparency and scalability to carbon markets, unlocking billions in private finance for climate action (SDG 13) and the protection of forests and ecosystems (SDG 15).</p>
+            </div>
+
+            <h3>SDG 14: Life Below Water</h3>
+            <em>(Conserve and sustainably use the oceans, seas and marine resources for sustainable development)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 14.1: Ocean Debris and Pollutant Tracking System</h4>
+                <p><strong>Context:</strong> Our oceans are choking on plastic debris and chemical pollutants, which threaten marine biodiversity and enter the human food chain. The diffuse nature of this pollution makes it difficult to track, clean up, and hold polluters accountable.</p>
+                <p><strong>The Technical Challenge:</strong> Design a system (e.g., using autonomous ocean drones, AI-powered analysis of satellite imagery, or "digital twin" ocean current models) to monitor, track, and predict the accumulation of marine debris and pollutants. The system must be able to identify major accumulation hotspots and trace pollution back to its source.</p>
+                <p><strong>Desired Impact:</strong> To provide the high-resolution data necessary for targeted, efficient cleanup efforts and for the enforcement of anti-pollution policies, contributing to both SDG 14 and SDG 12.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 14.2: Tech for Sustainable Aquaculture</h4>
+                <p><strong>Context:</strong> As wild fish stocks collapse, aquaculture (fish farming) is rapidly expanding to meet global demand for protein. However, intensive aquaculture can create its own severe environmental problems, including water pollution, disease outbreaks, and the destruction of coastal habitats.</p>
+                <p><strong>The Technical Challenge:</strong> Develop an IoT and AI-powered management system for sustainable aquaculture. The solution must use a network of in-water sensors to monitor key parameters in real-time (e.g., water quality, dissolved oxygen, fish health indicators, feed levels). An AI-driven dashboard must then optimize resource use (especially feed) and minimize the farm's environmental footprint.</p>
+                <p><strong>Desired Impact:</strong> To make aquaculture more sustainable and efficient, ensuring it can be a long-term solution for global food security (SDG 2) without destroying marine ecosystems (SDG 14).</p>
+            </div>
+
+            <h3>SDG 15: Life On Land</h3>
+            <em>(Protect, restore and promote sustainable use of terrestrial ecosystems...)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 15.1: Real-Time Deforestation and Land Degradation Monitoring</h4>
+                <p><strong>Context:</strong> Terrestrial ecosystems, especially forests, are vital "lungs of the planet" and hotspots of biodiversity. Yet, illegal logging and land degradation continue at an alarming rate, often happening in remote areas too quickly for authorities to intervene.</p>
+                <p><strong>The Technical Challenge:</strong> Create a real-time, high-resolution monitoring and alert system for deforestation and land degradation. The solution must fuse data from multiple sources (e.g., public satellites like Sentinel, high-resolution commercial imagery, and on-ground IoT-based audio sensors to "hear" chainsaws). An AI model must analyze this data to detect and verify illegal activity, automatically alerting authorities.</p>
+                <p><strong>Desired Impact:</strong> To "halt and reverse land degradation" by providing a powerful, undeniable tool for transparency, law enforcement, and ecosystem protection.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 15.2: Digital Biodiversity Tracking and Poaching Prevention</h4>
+                <p><strong>Context:</strong> We are in the midst of a biodiversity crisis, with poaching and habitat loss driving thousands of species toward extinction. Traditional conservation methods (like physical ranger patrols and invasive radio collars) are often expensive, dangerous, and insufficient to cover the vast areas that need protection.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a non-invasive, scalable system for tracking and protecting endangered wildlife. This could involve a network of AI-powered "smart" camera traps that use image recognition to identify both animals and poachers, acoustic sensors that detect gunshots or vehicles, or a data-driven model that predicts poaching "hotspots" to optimize ranger patrols.</p>
+                <p><strong>Desired Impact:</strong> To halt biodiversity loss by providing a scalable, low-cost, and effective technology for wildlife conservation and anti-poaching efforts.</p>
+            </div>
+
+            <h2>Domain 3: Prosperity and Peace — Infrastructure and Institutional Technology</h2>
+            <p>This domain focuses on the underlying systems that enable societies to function and thrive. It addresses the need for decent work, innovative and resilient infrastructure, and the accountable, peaceful institutions that serve as the foundation for all other goals.</p>
+
+            <h3>SDG 8: Decent Work and Economic Growth</h3>
+            <em>(Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 8.1: Industry 4.0 for SME Productivity</h4>
+                <p><strong>Context:</strong> Target 8.2 explicitly calls for "technological upgrading and innovation" to boost economic productivity. While large corporations are adopting "Industry 4.0" (e.g., IoT, AI, robotics), the small and medium-sized enterprises (SMEs) that form the backbone of most economies are being left behind due to high cost and complexity.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a low-cost, modular "Industry 4.0" toolkit for SMEs in the manufacturing or logistics sector. This could include a simple IoT solution for predictive maintenance on old machinery, an AI-powered camera system for quality control, or a basic platform for supply chain optimization.</p>
+                <p><strong>Desired Impact:</strong> To "diversify, innovate and upgrade" the SME sector, boosting its productivity, competitiveness, and ability to create "sustained, inclusive" economic growth.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 8.2: Ethical Gig Economy Platform</h4>
+                <p><strong>Context:</strong> Digital platforms have created millions of "gig work" opportunities, contributing to economic growth. However, this model often fails the "decent work" aspect of SDG 8. Many gig workers lack fair pay, job security, or access to "social protection", operating as precarious, disempowered contractors.</p>
+                <p><strong>The Technical Challenge:</strong> Design the architecture for a "worker-centric" gig economy platform. This solution must be structured (perhaps as a digital cooperative) to ensure fair and transparent algorithms, mechanisms for "decent job creation," portable social benefits (e.g., insurance, pensions) for workers, and pathways for "entrepreneurship".</p>
+                <p><strong>Desired Impact:</strong> To create a new, ethical model for the digital economy that provides both flexibility and "full and productive employment and decent work for all".</p>
+            </div>
+
+            <h3>SDG 9: Industry, Innovation and Infrastructure</h3>
+            <em>(Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 9.1: Digital Twin for Resilient Infrastructure</h4>
+                <p><strong>Context:</strong> SDG 9 calls for "quality, reliable, sustainable and resilient infrastructure". Climate change and other shocks place unprecedented stress on our critical physical infrastructure (e.g., bridges, power grids, water systems). The traditional "fail and fix" maintenance model is no longer sufficient.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a "Digital Twin" platform for a specific, critical piece of urban or rural infrastructure. This platform must use real-time IoT sensor data (e.g., from strain gauges, vibration sensors) to model the infrastructure's health, use AI for predictive maintenance (i.e., predicting failure points), and run simulations to test its resilience against various shocks.</p>
+                <p><strong>Desired Impact:</strong> To enable true "sustainable and resilient infrastructure development" by shifting from a reactive "fail and fix" model to a proactive "predict and prevent" model.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 9.2: Open Innovation Platform for R&D</h4>
+                <p><strong>Context:</strong> Target 9.5 calls for enhancing scientific research and increasing R&D workers. However, groundbreaking research is often siloed within individual university labs or corporate R&D departments, and "foster[ing] innovation" requires new models of collaboration.</p>
+                <p><strong>The Technical Challenge:</strong> Create a collaborative "open innovation" platform that connects industrial and social "challenge-holders" (e.g., a company needing a new material, an NGO needing a new device) with university researchers and independent innovators ("solvers"). The platform must facilitate "knowledge sharing", project management, and rapid IP agreements.</p>
+                <p><strong>Desired Impact:</strong> To accelerate "domestic technology development, research and innovation" by breaking down institutional silos and efficiently connecting real-world problems to novel solutions.</p>
+            </div>
+
+            <h3>SDG 16: Peace, Justice and Strong Institutions</h3>
+            <em>(Promote peaceful and inclusive societies... provide access to justice for all and build effective, accountable and inclusive institutions...)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 16.1: CivicTech for Institutional Transparency</h4>
+                <p><strong>Context:</strong> SDG 16 calls for "effective, accountable and inclusive institutions". Corruption, bribery, and a lack of transparency erode public trust, divert funds from critical services, and are a primary obstacle to development.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a "CivicTech" platform to "enhance the transparency and accountability of public institutions". This could be a tool for tracking public budgets and expenditures in real-time, an open-data platform for monitoring government performance, or a secure, encrypted, and anonymous whistleblowing platform for reporting corruption.</p>
+                <p><strong>Desired Impact:</strong> To "substantially reduce corruption" and build "strong institutions" by empowering citizens, journalists, and oversight bodies with access to information.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 16.2: Digital Platform for Access to Justice</h4>
+                <p><strong>Context:</strong> "Access to justice for all" is a cornerstone of SDG 16. However, for billions of people, legal services are unaffordable, geographically inaccessible, or intimidating. This disproportionately affects marginalized groups.</p>
+                <p><strong>The Technical Challenge:</strong> Create a digital platform to "facilitate access to justice for marginalized groups". This solution could be an AI-powered "legal chatbot" that provides information on basic rights and procedures, a platform for "remote access to legal resources", or a system to streamline and manage "virtual court hearings" for simple cases.</p>
+                <p><strong>Desired Impact:</strong> To democratize the legal system, "promote the rule of law", and ensure that justice is not just a privilege for the wealthy but an accessible right for all.</p>
+            </div>
+
+            <h3>SDG 17: Partnerships for the Goals</h3>
+            <em>(Strengthen the means of implementation and revitalize the Global Partnership for Sustainable Development)</em>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 17.1: Global Platform for SDG Technology Transfer</h4>
+                <p><strong>Context:</strong> SDG 17 is the "meta-goal" that enables the other 16. Target 17.7 explicitly promotes the "transfer, dissemination and diffusion of environmentally sound technologies to developing countries". Target 17.8 calls for a "technology bank". A key barrier is that proven solutions remain siloed.</p>
+                <p><strong>The Technical Challenge:</strong> Design a "global technology facilitation mechanism". This platform must act as an open-source "clearinghouse" or "app store" for proven, low-cost, SDG-related technologies (e.g., 3D-printable medical devices, open-source microgrid designs, water filtration plans). The platform must connect solution-providers with communities and partners who need them.</p>
+                <p><strong>Desired Impact:</strong> To "strengthen the science, technology and innovation capacity" of developing countries by creating an efficient, global mechanism for technology and knowledge transfer.</p>
+            </div>
+
+            <div class="problem-statement">
+                <h4>Problem Statement 17.2: Multi-Stakeholder Data-Sharing Platform</h4>
+                <p><strong>Context:</strong> Achieving the complex, interconnected SDGs requires "multi-stakeholder partnerships that mobilize and share knowledge". However, vital data is often locked in silos within governments, private companies, and civil society. Trust and technical barriers prevent the "exchange of data and information" needed for collaborative action.</p>
+                <p><strong>The Technical Challenge:</strong> Develop a secure, federated data-sharing platform. The platform's architecture must allow different organizations to share insights from their data without sharing the raw data itself (e.g., using federated learning, differential privacy, or other privacy-preserving techniques).</p>
+                <p><strong>Desired Impact:</strong> To enable effective "partnerships between governments, the private sector and civil society" by creating the trusted technical infrastructure necessary for large-scale data collaboration.</p>
+            </div>
+
+        </section>
+
+        <section id="part2">
+            <h2>Part II: Official Rules, Regulations, and Governance Framework</h2>
+
+            <h3>Preamble</h3>
+            <p>This document outlines the official rules, regulations, and governance framework for the Pitchathon. This event is an "ideathon" or "pitchathon" focused on the development of innovative, technology-driven solutions to the 17 United Nations Sustainable Development Goals (SDGs). Participation in the Pitchathon constitutes a full and unconditional agreement to abide by all rules, regulations, and final decisions of the organizing committee and judging panel.</p>
+
+            <h3>Article 1: Event Structure and Objectives</h3>
+            <p><strong>1.1 Event Overview:</strong> The Pitchathon is a multi-round competition where teams will identify a problem from the provided list (see Part I), develop an innovative technical solution, and pitch their concept to a panel of judges.</p>
+            <p><strong>1.2 Event Format:</strong></p>
+            <ul>
+                <li><strong>Round 1: Preliminary Submission.</strong> Registered teams will submit a mandatory Pitch Deck in PDF format and a brief executive summary for initial screening.</li>
+                <li><strong>Round 2: Finalist Live Pitch.</strong> Shortlisted teams will be invited to present their pitch live (in-person or virtually, as specified by organizers) to a panel of judges. The live pitch will be followed by a mandatory question-and-answer (Q&A) session.</li>
+            </ul>
+            <p><strong>1.3 Core Objectives:</strong></p>
+            <ul>
+                <li>To generate novel, feasible, and technology-driven solutions for the UN SDGs.</li>
+                <li>To foster skills in entrepreneurship, collaborative problem-solving, and systems thinking.</li>
+                <li>To connect student innovators with mentors, industry experts, and peers.</li>
+            </ul>
+
+            <h3>Article 2: Participant Eligibility and Team Formation</h3>
+            <p><strong>2.1 Eligibility Criteria:</strong></p>
+            <ul>
+                <li>Participants must be currently enrolled students (e.g., B.Tech, M.Tech, Ph.D. scholars, or any other undergraduate or graduate program) at a recognized university or institution.</li>
+                <li>All participants must be prepared to present a valid university-issued identification card.</li>
+                <li>Ventures that have already secured more than $50,000 USD (or equivalent) in funding or have generated more than $50,000 in revenue are not eligible to compete.</li>
+            </ul>
+            <p><strong>2.2 Team Composition:</strong></p>
+            <ul>
+                <li>Teams shall consist of a minimum of two (2) and a maximum of four (4) members.</li>
+                <li>Interdisciplinary teams (e.g., combining engineering, computer science, business, and design) are highly encouraged.</li>
+                <li>Each team must designate one (1) "Team Leader" who will serve as the sole point of contact for all official communications.</li>
+                <li>An individual student may not be a member of more than one team.</li>
+            </ul>
+            <p><strong>2.3 Registration:</strong></p>
+            <ul>
+                <li>All teams must complete the official registration form via the event portal by the specified deadline.</li>
+                <li>No changes to team composition (additions or deletions of members) will be permitted after the final registration deadline.</li>
+            </ul>
+
+            <h3>Article 3: Submission Requirements</h3>
+            <p><strong>3.1 Preliminary Round: Pitch Deck Submission</strong></p>
+            <ul>
+                <li>Teams must submit one (1) PDF file of their pitch deck.</li>
+                <li>The deck must be formatted in a 16:9 aspect ratio.</li>
+                <li>The deck must not exceed twelve (12) slides in total, inclusive of title, appendix, and "thank you" slides.</li>
+            </ul>
+            <p><strong>3.2 Mandatory Pitch Deck Contents:</strong> The pitch deck must be clear, concise, and visually compelling. It must include the following information:</p>
+            <ul>
+                <li><strong>Title Slide:</strong> Venture Name, Team Members, and Chosen Problem Statement/SDG.</li>
+                <li><strong>The Problem:</strong> A clear definition of the problem being solved and its direct link to the chosen SDG.</li>
+                <li><strong>The Solution:</strong> A detailed description of the proposed technical solution. What is it? How does it work? What is the core technology?</li>
+                <li><strong>Value Proposition:</strong> What is the unique value proposition? Why is this solution significantly better than existing alternatives?</li>
+                <li><strong>Market and Target Audience:</strong> Who are the primary users and/or customers? What is the size of the addressable market?</li>
+                <li><strong>Business/Sustainability Model:</strong> How will the venture generate revenue or be financially sustainable (if a non-profit)?</li>
+                <li><strong>SDG Impact:</strong> How will the venture's positive impact on the chosen SDG be measured?</li>
+                <li><strong>The Team:</strong> Who is on the team and why are they uniquely qualified to solve this problem?</li>
+                <li><strong>Execution Plan / Roadmap:</strong> What are the key milestones for the next 6-12 months?</li>
+                <li><strong>The Ask (Optional):</strong> What is the team's primary need (e.g., funding, mentorship, technical partners)?</li>
+            </ul>
+            <p><strong>3.3 Final Round: Live Pitch Format</strong></p>
+            <p>The live pitch session for each finalist team will be ten (10) minutes in total. This time will be strictly divided as follows:</p>
+            <ul>
+                <li>Five (5) minutes for an uninterrupted presentation.</li>
+                <li>Five (5) minutes for a mandatory Q&A session with the judging panel.</li>
+                <li>Time limits will be strictly enforced by a timekeeper.</li>
+            </ul>
+            <p><strong>3.4 Originality and Plagiarism:</strong></p>
+            <ul>
+                <li>All submitted ideas, code, and content must be the original work of the team members.</li>
+                <li>Any team found to have engaged in plagiarism or the misrepresentation of pre-existing work as their own will be immediately disqualified.</li>
+            </ul>
+
+            <h3>Article 4: Judging and Evaluation</h3>
+            <p><strong>4.1 Panel of Judges:</strong> The judging panel will be composed of subject-matter experts, including faculty, industry leaders, investors, and specialists in sustainable development and technology.</p>
+            <p><strong>4.2 Core Judging Criteria:</strong> All submissions and pitches will be evaluated based on four core pillars. The final score will be a weighted average of these pillars:</p>
+            <ul>
+                <li><strong>SDG Alignment and Impact Potential (30%):</strong> The clarity and significance of the chosen problem; the strength of the link to the SDG; and the potential for a large, measurable, and sustainable social or environmental impact.</li>
+                <li><strong>Innovation and Technical Feasibility (30%):</strong> The novelty, creativity, and uniqueness of the solution. The technical soundness of the solution and the feasibility of the proposed implementation plan.</li>
+                <li><strong>Business Model and Scalability (20%):</strong> The viability of the financial or sustainability model. The team's understanding of the target market, users, and competitive landscape. The potential for the solution to scale.</li>
+                <li><strong>Pitch Quality and Q&A (20%):</strong> The clarity, structure, and persuasiveness of the presentation. The team's ability to respond confidently and with deep knowledge to judges' questions during the Q&A.</li>
+            </ul>
+            <p><strong>4.3 Scoring Rubric:</strong> Evaluation will be conducted using the official rubric provided in Table 1.</p>
+            <p><strong>4.4 Finality of Decision:</strong> All judging decisions are final, binding, and not open to appeal.</p>
+
+            <h3>Article 5: Code of Conduct and Legal Provisions</h3>
+            <p><strong>5.1 Participant Code of Conduct:</strong></p>
+            <ul>
+                <li>All participants are required to maintain a professional, collaborative, and respectful demeanor throughout the event.</li>
+                <li>The Pitchathon is a harassment-free event. Harassment, discrimination, or intimidation based on gender, race, religion, sexual orientation, disability, or any other attribute will not be tolerated and will be grounds for immediate disqualification.</li>
+                <li>Submissions must not contain any content that is "defamatory, offensive, or otherwise inappropriate".</li>
+            </ul>
+            <p><strong>5.2 Intellectual Property (IP) Rights:</strong></p>
+            <ul>
+                <li>All rights, title, and interest in the ideas, concepts, code, and technology ("Intellectual Property") created by a team for the Pitchathon shall be owned by the team members who created it. The [University Name] claim no ownership or rights to any participant IP.</li>
+                <li><strong>No Confidentiality:</strong> Participants must acknowledge that the Pitchathon is a public event. Submissions, presentations, and pitches are not confidential and will be viewed by judges and other participants. Teams are solely responsible for determining what information to disclose. The organizers do not guarantee confidentiality, and no participant should submit proprietary information they wish to keep secret.</li>
+            </ul>
+            <p><strong>5.3 Use of Media and Event Likeness:</strong></p>
+            <ul>
+                <li>By participating in the Pitchathon, teams grant the [University Name] permission to use photographs, videos, and submitted materials (e.g., pitch deck content) for educational, archival, and promotional purposes, without payment or other consideration.</li>
+            </ul>
+            <p><strong>5.4 Disqualification:</strong></p>
+            <ul>
+                <li>The event organizers reserve the right, in their sole discretion, to disqualify any team that is found to be in violation of the Code of Conduct, submission rules, originality requirements, or any other rule outlined in this document.</li>
+            </ul>
+
+            <h3>Table 1: Official Pitchathon Judging Rubric (for Final Round)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Judging Criterion</th>
+                        <th>Weighting</th>
+                        <th>Description and Guiding Questions (Score 1-5)</th>
+                        <th>Score (Weight x Scale)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. SDG Alignment and Impact Potential</td>
+                        <td>30%</td>
+                        <td><strong>Problem Definition:</strong> Is the problem clearly articulated, significant, and evidence-based?<br>
+                            <strong>SDG Link:</strong> Is the solution's link to the SDG clear, direct, and meaningful?<br>
+                            <strong>Impact Potential:</strong> Is the proposed impact measurable, scalable, and sustainable? Does it address root causes?</td>
+                        <td>30 x (1-5) =</td>
+                    </tr>
+                    <tr>
+                        <td>2. Innovation and Technical Feasibility</td>
+                        <td>30%</td>
+                        <td><strong>Innovation:</strong> Is the solution genuinely innovative, creative, and differentiated from existing alternatives?<br>
+                            <strong>Technical Feasibility:</strong> Is the underlying technology sound? Is the implementation plan realistic? Is there a prototype, demo, or a clear path to one?</td>
+                        <td>30 x (1-5) =</td>
+                    </tr>
+                    <tr>
+                        <td>3. Business Model and Scalability</td>
+                        <td>20%</td>
+                        <td><strong>Viability:</strong> Is there a clear and viable plan for financial sustainability (e.g., revenue model, grant funding)?<br>
+                            <strong>Market Awareness:</strong> Does the team understand the target audience, market, and competitive landscape?<br>
+                            <strong>Scalability:</strong> Does the solution have a clear potential to scale?</td>
+                        <td>20 x (1-5) =</td>
+                    </tr>
+                    <tr>
+                        <td>4. Pitch Quality and Q&A Defense</td>
+                        <td>20%</td>
+                        <td><strong>Presentation:</strong> Was the pitch clear, compelling, well-structured, and professionally delivered?<br>
+                            <strong>Q&A Defense:</strong> Did the team respond to judges' questions confidently, thoughtfully, and with deep knowledge?</td>
+                        <td>20 x (1-5) =</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL SCORE</strong></td>
+                        <td><strong>100%</strong></td>
+                        <td></td>
+                        <td><strong></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p>Pitchathon Event | Good luck to all teams!</p>
+        </footer>
+
+    </div> </body>
+</html>
